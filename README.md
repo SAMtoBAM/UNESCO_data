@@ -12,7 +12,7 @@ Create an english version (file has multiple languages) to reduce information an
 This has already been done for 2024 and can be downloaded from [here](https://drive.google.com/file/d/1b35NXsE1byxTfPNQv4frB-2Eol95HAO1/view?usp=sharing)
 
 
-Alternatively you can try automate the process as below
+Alternatively you can try automate the process as below in bash
 
       #Download
       wget https://whc.unesco.org/en/list/xlsx/whc-sites-2024.xlsx
@@ -25,6 +25,15 @@ Alternatively you can try automate the process as below
       
       
 Once you have the tsv file, add a row per individual and then in each row you have visited write "Visited" 
+
+Now you need to have R installed and be able to run a shiny app <br/>
+You can run the following below in R
+
+```{r}
+      options(repos = c(CRAN = "https://cran.rstudio.com"))
+      install.packages("shiny)
+      install.packages("DT")
+```
 
 Now import the tsv into R and use the shiny app to visualise the data
 
