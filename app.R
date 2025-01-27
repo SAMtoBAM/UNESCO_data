@@ -75,7 +75,7 @@ observeEvent(input$inputdataset, {
     observeEvent(input$UNESCOhunters, {
       
       output$dynamic <- renderTable({
-      mytable[str_detect(mytable[,input$UNESCOhunters],"Visited"),1:15]
+      mytable[str_detect(mytable[,input$UNESCOhunters],"Visited"),c("unique_number", "name_en", "short_description_en","states_name_en", "region_en")]
     })
     
 })
