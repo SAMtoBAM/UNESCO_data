@@ -31,8 +31,10 @@ You can run the following below in R
 
 ```{r}
       options(repos = c(CRAN = "https://cran.rstudio.com"))
-      install.packages("shiny)
-      install.packages("DT")
+      library(shiny)
+      library(ggplot2)
+      library(dplyr)
+      library(tidyverse)
 ```
 
 Now import the tsv into R and use the shiny app to visualise the data
