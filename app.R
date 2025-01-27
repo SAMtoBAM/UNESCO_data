@@ -27,7 +27,7 @@ ui <- fluidPage(
   #selectInput("dataset", label = "Dataset", choices = ls("package:datasets")),
   
   verbatimTextOutput("nonsense"),
-  DT::renderDataTable("dynamic")
+  tableOutput("dynamic")
   
 )
 
@@ -74,7 +74,7 @@ observeEvent(input$inputdataset, {
     
     observeEvent(input$UNESCOhunters, {
       
-      output$dynamic <- DT::renderDataTable({
+      output$dynamic <- renderTable({
       mytable[str_detect(mytable[,input$UNESCOhunters],"Visited"),1:15]
     })
     
