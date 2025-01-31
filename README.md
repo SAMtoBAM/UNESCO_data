@@ -27,17 +27,6 @@ Alternatively you can try automate the process as below in bash
 Once you have the tsv file, add a row per individual and then in each row you have visited write "Visited" 
 
 Now you need to have R installed and be able to run a shiny app <br/>
-You can run the following below in R
-
-```{r}
-      options(repos = c(CRAN = "https://cran.rstudio.com"))
-      library(shiny)
-      library(ggplot2)
-      library(dplyr)
-      library(tidyverse)
-```
-
-Now import the tsv into R and use the shiny app to visualise the data
-
+To do this launch the app project in R and run the app file
 
 
