@@ -157,7 +157,7 @@ server <- function(input, output, session) {
     ##should make this a drop down that can select sites, countries or regions
     #render a upset plot using the list of unique numbers for each site (for now)
     output$plot2 <- renderPlot({
-      upset(fromList(sites), order.by = "freq", sets.x.label = "Total sites visited")
+      upset(fromList(sites), order.by = "freq", sets.x.label = "Total sites visited", nsets = 10)
       #p3=upset(fromList(sites), order.by = "freq", sets.x.label = "Total sites visited")
       #p4=upset(fromList(countries), order.by = "freq", sets.x.label = "Total countries visited")
       #grid.arrange(p3,p4, ncol=2)
