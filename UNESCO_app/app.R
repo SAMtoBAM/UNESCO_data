@@ -55,7 +55,7 @@ ui <- fluidPage(
   
   ##in the header add a banner created of the UNESCO emblem
   titlePanel(title=div(img(src="unesco_banner.png", width="100%", align = "center"))),
-    
+  
   ##select bar for choosing the file 'inputdataset'
   div(class = "file-input-container", fileInput('inputdataset', label = 'Select your UNESCO data', accept = c(".tsv"))),
   
@@ -63,21 +63,21 @@ ui <- fluidPage(
   ## a table output to summarise the basics for all individuals
   tableOutput("table"),
   ## plotting the total visited for each individual
-  plotOutput(
-    "plot1",
-    width = "100%",
-    height = "200px",
-    click = NULL,
-    dblclick = NULL,
-    hover = "plot_hover",
-    brush = NULL,
-    inline = FALSE
-  ),
+  #plotOutput(
+  #  "plot1",
+  #  width = "100%",
+  #  height = "200px",
+  #  click = NULL,
+  #  dblclick = NULL,
+  #  hover = "plot_hover",
+  #  brush = NULL,
+  #  inline = FALSE
+  #),
   ##an upset plot looking at the overlap in all the individuals per site/countries
   plotOutput(
     "plot2",
     width = "100%",
-    height = "250px",
+    height = "400px",
     click = NULL,
     dblclick = NULL,
     hover = "plot_hover",
@@ -87,21 +87,21 @@ ui <- fluidPage(
   
   ##a select bar for choosing each of the individuals
   div(class = "file-input-container", selectInput('UNESCOhunters', label = 'Select your UNESCO traveller', choices = 'Nobody available yet; select an input file')),
-
+  
   ##map to show the locations visited by each traveller
   leafletOutput(outputId = "map"),
   #verbatimTextOutput("nonsense")
-
+  
   ##add some space to the bottom of the page so that the last rendered item doesn't hit the edge
   HTML("<br><br><br>")  
 )
 
 # SERVER OUTPUT 
 server <- function(input, output, session) {
-
-##allow for the selection of a tsv file then
-##modify the following depending on the file uploaded
-observeEvent(input$inputdataset, {
+  
+  ##allow for the selection of a tsv file then
+  ##modify the following depending on the file uploaded
+  observeEvent(input$inputdataset, {
     
     ##read is a tsv file using the drop down selector 'inputdataset'
     mytable <- read.csv(input$inputdataset$datapath, header=T, sep='\t', quote="")
@@ -145,31 +145,31 @@ observeEvent(input$inputdataset, {
     
     ##render the simple summary stats table 'table'
     output$table <- renderTable({
-        sumtable
+      sumtable
     }, align = "c", width="100%", digits = 0)
     ##render the simple summary stats plots 'plot1'
-    output$plot1 <- renderPlot({
-      p1=ggplot(subset(sumtable, Traveller == "Summary"), aes(x=fct_reorder(`Traveller`, `Total number of sites`), y=`Total number of sites`))+geom_col()+theme_classic()+theme(axis.text.x = element_text(face = "bold"))+labs(x="")
-      p2=ggplot(subset(sumtable, Traveller != "Summary"), aes(x=fct_reorder(`Traveller`, `Total number of sites`), y=`Total number of sites`))+geom_col()+theme_classic()+theme(axis.text.x = element_text(face = "bold"))+labs(x="", y="Sites visited")
-      grid.arrange(p1,p2, ncol=2, widths=c(1,4))
-    })
+    #output$plot1 <- renderPlot({
+    #  p1=ggplot(subset(sumtable, Traveller == "Summary"), aes(x=fct_reorder(`Traveller`, `Total number of sites`), y=`Total number of sites`))+geom_col()+theme_classic()+theme(axis.text.x = element_text(face = "bold"))+labs(x="")
+    #  p2=ggplot(subset(sumtable, Traveller != "Summary"), aes(x=fct_reorder(`Traveller`, `Total number of sites`), y=`Total number of sites`))+geom_col()+theme_classic()+theme(axis.text.x = element_text(face = "bold"))+labs(x="", y="Sites visited")
+    #  grid.arrange(p1,p2, ncol=2, widths=c(1,4))
+    #})
     
     ##should make this a drop down that can select sites, countries or regions
     #render a upset plot using the list of unique numbers for each site (for now)
     output$plot2 <- renderPlot({
-      upset(fromList(sites), order.by = "freq")
-      #p3=upset(fromList(sites), order.by = "freq")
-      #p4=upset(fromList(countries), order.by = "freq")
+      upset(fromList(sites), order.by = "freq", sets.x.label = "Total sites visited")
+      #p3=upset(fromList(sites), order.by = "freq", sets.x.label = "Total sites visited")
+      #p4=upset(fromList(countries), order.by = "freq", sets.x.label = "Total countries visited")
       #grid.arrange(p3,p4, ncol=2)
     })
     
     
     ##drop down box for selecting the list of travellers
     updateSelectInput(session, "UNESCOhunters", label = "Select your UNESCO traveller", choices = colnames(mytable[, 16:ncol(mytable), drop = FALSE]))
-
-  ##modify the following depending on the traveller selected
+    
+    ##modify the following depending on the traveller selected
     observeEvent(input$UNESCOhunters, {
-
+      
       ##render a map using mapview with the regions the traveller visited indicated by the long-lang coordinates
       output$map <- renderLeaflet({
         
@@ -178,11 +178,11 @@ observeEvent(input$inputdataset, {
         
       })
       
-})
-      
-})
+    })
+    
+  })
   
-
+  
   
   
   
