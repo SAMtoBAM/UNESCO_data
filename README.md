@@ -34,7 +34,7 @@ You can then save this file/export it as a tsv (the original file format and com
 Now you need to run the app and import your table
 
 <ins> Simple option: </ins> <br/>
-Use the online version at hosted by [shinyapps.io] (https://mumandco.shinyapps.io/unesco_app/) <br/>
+Use the online version at hosted by [shinyapps.io](https://mumandco.shinyapps.io/unesco_app/) <br/>
 
 <ins> Harder option: </ins> <br/>
 Install R then run the shiny app locally <br/>
