@@ -4,7 +4,8 @@ The data visualiation has been made easy with an R shiny app
 
 ### Step 1: <br/>
 
-You need to put your name at the top of the far right column then put 'Visited' if you have been to the corresponding UNESCO site in that row
+You need to put your name at the top of the far right column then put 'Visited' if you have been to the corresponding UNESCO site in that row as below <br/>
+![Screenshot 2025-02-08 105723](https://github.com/user-attachments/assets/3b892c75-907e-4ad5-bb0a-4838174f7e39)
 
 Simple option: <br/>
 Download the tab-seperated-values (tsv) table from [here](https://drive.google.com/file/d/1b35NXsE1byxTfPNQv4frB-2Eol95HAO1/view?usp=sharing) <br/>
