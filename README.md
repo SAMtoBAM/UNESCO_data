@@ -29,4 +29,10 @@ Once you have the tsv file, add a row per individual and then in each row you ha
 Now you need to have R installed and be able to run a shiny app <br/>
 To do this launch the app project in R and run the app file
 
+      ##in R
+      library(shiny)
+      ##then run the app putting the path to the app downloaded
+      runApp(appDir = "UNESCO_app/")
 
+OR you can just use the shinyapp.io version 
+https://mumandco.shinyapps.io/unesco_app/
