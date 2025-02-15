@@ -1,6 +1,6 @@
 
 ##itake the list of required libraries and install them if they are not already present
-list.of.packages <- c("shiny", "ggplot2", "dplyr", "tidyverse", "DT","mapview","gridExtra","UpSetR")
+list.of.packages <- c("shiny", "ggplot2", "dplyr", "tidyverse", "DT","sf","leaflet","mapview","gridExtra","UpSetR")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 
@@ -158,9 +158,6 @@ server <- function(input, output, session) {
     #render a upset plot using the list of unique numbers for each site (for now)
     output$plot2 <- renderPlot({
       upset(fromList(sites), order.by = "freq", sets.x.label = "Total sites visited", nsets = 10)
-      #p3=upset(fromList(sites), order.by = "freq", sets.x.label = "Total sites visited")
-      #p4=upset(fromList(countries), order.by = "freq", sets.x.label = "Total countries visited")
-      #grid.arrange(p3,p4, ncol=2)
     })
     
     
@@ -181,9 +178,6 @@ server <- function(input, output, session) {
     })
     
   })
-  
-  
-  
   
   
 }  
