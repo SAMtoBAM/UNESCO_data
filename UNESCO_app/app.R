@@ -63,19 +63,9 @@ ui <- fluidPage(
   ## a table output to summarise the basics for all individuals
   tableOutput("table"),
   ## plotting the total visited for each individual
-  #plotOutput(
-  #  "plot1",
-  #  width = "100%",
-  #  height = "200px",
-  #  click = NULL,
-  #  dblclick = NULL,
-  #  hover = "plot_hover",
-  #  brush = NULL,
-  #  inline = FALSE
-  #),
   ##an upset plot looking at the overlap in all the individuals per site/countries
   plotOutput(
-    "plot2",
+    "plot1",
     width = "100%",
     height = "400px",
     click = NULL,
@@ -156,7 +146,7 @@ server <- function(input, output, session) {
     
     ##should make this a drop down that can select sites, countries or regions
     #render a upset plot using the list of unique numbers for each site (for now)
-    output$plot2 <- renderPlot({
+    output$plot1 <- renderPlot({
       upset(fromList(sites), order.by = "freq", sets.x.label = "Total sites visited", nsets = 10)
     })
     
